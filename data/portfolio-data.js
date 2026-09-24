@@ -9,6 +9,7 @@ export const profile = {
 };
 
 export const stack = [
+  { category: 'Lenguajes', items: ['Python', 'JavaScript', 'Java', 'SQL'] },
   { category: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'React', 'AngularJS'] },
   { category: 'Backend', items: ['Python', 'FastAPI', 'APIs REST', 'WebSockets'] },
   { category: 'Bases de datos', items: ['SQLite', 'MySQL', 'SQL'] },
