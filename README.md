@@ -58,6 +58,8 @@ La sección de actividad consulta `api.github.com` al cargar la página:
 
 ## Publicar en Vercel
 
+Sitio publicado: https://miportafolio-pi.vercel.app/
+
 1. Sube la carpeta a https://github.com/odettegeytzel-ctrl/portafolio.
 2. En vercel.com, importa el repositorio (Framework: **Other**, sin build command).
 3. Cada `git push` a `main` vuelve a publicar el sitio.
