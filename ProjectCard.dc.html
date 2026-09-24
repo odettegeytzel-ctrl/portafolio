@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><script src="./image-slot.js"></script></helmet>
+<sc-if value="{{ project.placeholder }}" hint-placeholder-val="{{ true }}">
+  <div style="height:100%;box-sizing:border-box;border:1px dashed #33353a;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;min-height:280px;justify-content:flex-end">
+    <div style="font:500 12px 'JetBrains Mono',monospace;color:#7fdca4;letter-spacing:.04em;text-transform:uppercase">{{ project.category }}</div>
+    <div style="font:700 20px 'Manrope',sans-serif;color:#ecebe8">{{ project.name }}</div>
+    <div style="font:400 15px/1.5 'Manrope',sans-serif;color:#9a9994">{{ project.desc }}</div>
+  </div>
+</sc-if>
+<sc-if value="{{ project.real }}" hint-placeholder-val="{{ false }}">
+  <article style="height:100%;box-sizing:border-box;border:1px solid #26272b;border-radius:16px;overflow:hidden;background:#141517;display:flex;flex-direction:column;transition:border-color .2s,transform .2s" style-hover="border-color:#3d3f44;transform:translateY(-2px)">
+    <div style="aspect-ratio:16/10;background:#1b1c1f;position:relative;overflow:hidden">
+      <sc-if value="{{ project.hasImage }}" hint-placeholder-val="{{ false }}">
+        <img src="{{ project.image }}" alt="Captura de {{ project.name }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
+      </sc-if>
+      <sc-if value="{{ project.livePreview }}" hint-placeholder-val="{{ false }}">
+        <iframe src="{{ project.demoUrl }}" title="Vista previa de {{ project.name }}" loading="lazy" tabindex="-1" aria-hidden="true" style="position:absolute;top:0;left:0;width:400%;height:400%;border:0;transform:scale(.25);transform-origin:0 0;pointer-events:none;background:#fff"></iframe>
+      </sc-if>
+      <sc-if value="{{ project.noVisual }}" hint-placeholder-val="{{ true }}">
+        <image-slot id="{{ project.imageId }}" shape="rect" placeholder="Captura del proyecto"></image-slot>
+      </sc-if>
+    </div>
+    <div style="padding:24px;display:flex;flex-direction:column;gap:14px;flex:1">
+      <h3 style="margin:0;font:700 22px 'Manrope',sans-serif;color:#ecebe8">{{ project.name }}</h3>
+      <p style="margin:0;font:400 15px/1.55 'Manrope',sans-serif;color:#b9b8b3">{{ project.desc }}</p>
+      <p style="margin:0;font:400 14px/1.55 'Manrope',sans-serif;color:#9a9994"><span style="color:#ecebe8;font-weight:500">Problema: </span>{{ project.problem }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ project.tech }}" as="tg" hint-placeholder-count="3"><span style="font:400 12px 'JetBrains Mono',monospace;color:#b9b8b3;border:1px solid #2c2e32;border-radius:999px;white-space:nowrap;padding:4px 10px">{{ tg }}</span></sc-for>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:auto;padding-top:8px">
+        <sc-if value="{{ project.hasDemo }}" hint-placeholder-val="{{ true }}"><a href="{{ project.demoUrl }}" target="_blank" rel="noopener" style="font:600 14px 'Manrope',sans-serif;background:#ecebe8;color:#0f1012;border-radius:999px;white-space:nowrap;padding:10px 18px">Ver proyecto</a></sc-if>
+        <sc-if value="{{ project.hasRepo }}" hint-placeholder-val="{{ true }}"><a href="{{ project.repoUrl }}" target="_blank" rel="noopener" style="font:600 14px 'Manrope',sans-serif;border:1px solid #33353a;color:#ecebe8;border-radius:999px;white-space:nowrap;padding:10px 18px">GitHub</a></sc-if>
+      </div>
+    </div>
+  </article>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:520},&quot;project&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{name:string,desc:string,problem?:string,tech?:string[],demoUrl?:string,repoUrl?:string,imageId?:string,image?:string,hasImage?:boolean,livePreview?:boolean,noVisual?:boolean,hasDemo?:boolean,hasRepo?:boolean,placeholder?:boolean,real?:boolean,category?:string}&quot;}}"></script>
+</body>
+</html>
